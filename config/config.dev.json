@@ -1,0 +1,18 @@
+{
+  "app": {
+    "debug": true
+  },
+  "mysql": {
+    "hostname": "gateway.sumeils.com",
+    "database": "truly_platform",
+    "username": "root",
+    "password": "sumei15b",
+    "port": 31313
+  },
+  "redis": {
+    "auth": "readwrite@KFq0xqPvewY8fZ4l#RB4uMTY",
+    "host": "203.195.203.88",
+    "port": 31312,
+    "select_db": 40
+  }
+}

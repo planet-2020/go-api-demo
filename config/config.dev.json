@@ -7,7 +7,10 @@
     "database": "truly_platform",
     "username": "root",
     "password": "sumei15b",
-    "port": 31313
+    "port": 31313,
+    "max_idle_conn": 1,
+    "max_open_conn": 3,
+    "conn_max_life_time": 600
   },
   "redis": {
     "auth": "readwrite@KFq0xqPvewY8fZ4l#RB4uMTY",

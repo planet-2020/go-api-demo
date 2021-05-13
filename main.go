@@ -3,6 +3,7 @@ package main
 import (
 	"github.com/urfave/cli"
 	"go-api-demo/internal/config"
+	"go-api-demo/models"
 	"os"
 )
 
@@ -19,7 +20,13 @@ func main()  {
 	}
 	app.Action = func(c *cli.Context) error {
 		env := c.String("env")
+		// 初始化配置文件
 		if err := config.Init(env); err != nil {
+			return err
+		}
+
+		//初始化数据库
+		if err := models.Database(config.Conf.Mysql); err != nil {
 			return err
 		}
 

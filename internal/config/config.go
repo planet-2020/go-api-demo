@@ -14,31 +14,44 @@ var (
 )
 
 type Config struct {
-	App struct{
-		Name string `json:"name"`
-		Debug bool `json:"debug"`
-	} `json:"app"`
+	App AppConfig `json:"app"`
+	Mysql MysqlConfig `json:"mysql"`
+	Redis RedisConfig `json:"redis"`
+}
 
-	Mysql struct{
-		Hostname string	`json:"hostname"`
-		Database string	`json:"database"`
-		Username string	`json:"username"`
-		Password string	`json:"password"`
-		Port int `json:"port"`
-		Prefix string `json:"prefix"`
-	} `json:"mysql"`
+type AppConfig struct {
+	Name string `json:"name"`
+	Debug bool `json:"debug"`
+}
 
-	Redis struct{
-		Host string `json:"host"`
-		Port string `json:"port"`
-		Auth string `json:"auth"`
-		SelectDb int `json:"select_db"`
-	} `json:"redis"`
-	
+type MysqlConfig struct {
+	Hostname string	`json:"hostname"`
+	Database string	`json:"database"`
+	Username string	`json:"username"`
+	Password string	`json:"password"`
+	Port int `json:"port"`
+	Charset string `json:"charset"`
+	Prefix string `json:"prefix"`
+	MaxIdleConn int `json:"max_idle_conn"`
+	MaxOpenConn int `json:"max_open_conn"`
+	ConnMaxLifeTime int `json:"conn_max_life_time"`
+}
+
+type RedisConfig struct {
+	Host string `json:"host"`
+	Port string `json:"port"`
+	Auth string `json:"auth"`
+	SelectDb int `json:"select_db"`
 }
 
 func setDefault()  {
+	// app
 	viper.SetDefault("app.name","go-api-demo")
+	// mysql
+	viper.SetDefault("mysql.charset","utf8mb4")
+	viper.SetDefault("mysql.max_idle_conn",5)
+	viper.SetDefault("mysql.max_open_conn",10)
+	viper.SetDefault("mysql.conn_max_life_time",600)
 }
 
 func Init(env string) error {

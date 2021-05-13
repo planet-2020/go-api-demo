@@ -21,6 +21,8 @@ type Config struct {
 
 type AppConfig struct {
 	Name string `json:"name"`
+	Port string `json:"port"`
+	Env string `json:"env"`
 	Debug bool `json:"debug"`
 }
 
@@ -47,6 +49,7 @@ type RedisConfig struct {
 func setDefault()  {
 	// app
 	viper.SetDefault("app.name","go-api-demo")
+	viper.SetDefault("app.port","5050")
 	// mysql
 	viper.SetDefault("mysql.charset","utf8mb4")
 	viper.SetDefault("mysql.max_idle_conn",5)
@@ -60,10 +63,13 @@ func Init(env string) error {
 	switch env {
 	case "dev":
 		confFile = "config.dev"
+		viper.SetDefault("app.env","dev")
 	case "pro":
 		confFile = "config.pro"
+		viper.SetDefault("app.env","pro")
 	default:
 		confFile = "config.dev"
+		viper.SetDefault("app.env","dev")
 	}
 	viper.AddConfigPath(confPath)
 	viper.SetConfigName(confFile)

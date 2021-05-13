@@ -4,6 +4,7 @@ import (
 	"github.com/urfave/cli"
 	"go-api-demo/internal/config"
 	"go-api-demo/models"
+	"go-api-demo/router"
 	"os"
 )
 
@@ -29,6 +30,10 @@ func main()  {
 		if err := models.Database(config.Conf.Mysql); err != nil {
 			return err
 		}
+
+		//初始化路由并启动web服务
+		server := router.Init(config.Conf.App)
+		server.GinEngine.Run(":"+config.Conf.App.Port)
 
 		return nil
 	}

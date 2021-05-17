@@ -10,6 +10,11 @@ import (
 
 var DB *gorm.DB
 
+/**
+ * @Description: 连接mysql
+ * @param mysqlConfig
+ * @return error
+ */
 func Database(mysqlConfig config.MysqlConfig) error {
 	// 连接mysql
 	dsn := fmt.Sprintf("%s:%s@tcp(%s:%d)/%s?charset=%s",

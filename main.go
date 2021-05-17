@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"github.com/arl/statsviz"
 	"github.com/urfave/cli"
 	"go-api-demo/internal/config"
@@ -13,23 +14,25 @@ import (
 func main()  {
 	app := cli.NewApp()
 	app.Name = "go-api-demo"
-	app.Usage = "go-api-demo -e dev|pro"
+	app.Usage = "go-api-demo -e local|dev|prod"
 	app.Flags = []cli.Flag{
 		cli.StringFlag{
 			Name: "env, e",
-			Value: "dev",
-			Usage: "env: dev|pro",
+			Value: "local",
+			Usage: "env: local|dev|prod",
 		},
 	}
 	app.Action = func(c *cli.Context) error {
 		env := c.String("env")
 		// 初始化配置文件
 		if err := config.Init(env); err != nil {
+			fmt.Println(err)
 			return err
 		}
 
 		//初始化数据库
 		if err := models.Database(config.Conf.Mysql); err != nil {
+			fmt.Println(err)
 			return err
 		}
 
@@ -45,7 +48,10 @@ func main()  {
 	app.Run(os.Args)
 }
 
-// 统计运行信息
+/**
+ * @Description: 运行实时统计
+ * @param port 端口
+ */
 func runtimeStatistics(port string)  {
 	//运行后访问 http://127.0.0.1:5051/debug/statsviz/ 查看统计数据
 	statsviz.RegisterDefault()

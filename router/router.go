@@ -11,6 +11,11 @@ type Server struct {
 	GinEngine *gin.Engine
 }
 
+/**
+ * @Description: 路由初始化
+ * @param appConfig
+ * @return *Server
+ */
 func Init(appConfig config.AppConfig) *Server {
 	server := new(Server)
 	var mode string
@@ -29,6 +34,10 @@ func Init(appConfig config.AppConfig) *Server {
 	return server
 }
 
+/**
+ * @Description: 基础路由
+ * @receiver server
+ */
 func (server *Server) baseApi() {
 	server.GinEngine.GET("/",controller.Index)
 }

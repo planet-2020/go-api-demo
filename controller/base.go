@@ -5,6 +5,10 @@ import (
 	"net/http"
 )
 
+/**
+ * @Description: 默认首页
+ * @param c
+ */
 func Index(c *gin.Context)  {
-	c.JSON(http.StatusOK,"index")
+	c.String(http.StatusOK,"ok")
 }

@@ -1,8 +1,10 @@
 package config
 
 import (
+	"errors"
 	"github.com/fsnotify/fsnotify"
 	"github.com/spf13/viper"
+	"strings"
 )
 
 const (
@@ -12,6 +14,11 @@ const (
 var (
 	Conf *Config
 )
+var Envs = map[string]string{
+	"local":"config.local",
+	"dev":"config.dev",
+	"prod":"config.prod",
+}
 
 type Config struct {
 	App AppConfig `json:"app"`
@@ -59,19 +66,20 @@ func setDefault()  {
 	viper.SetDefault("Mysql.ConnMaxLifeTime",600)
 }
 
+/**
+ * @Description: 配置文件初始化
+ * @param env 环境模式
+ * @return error
+ */
 func Init(env string) error {
-	// 获取配置文件
-	var confFile string
-	switch env {
-	case "dev":
-		confFile = "config.dev"
-		viper.SetDefault("app.env","dev")
-	case "pro":
-		confFile = "config.pro"
-		viper.SetDefault("app.env","pro")
-	default:
-		confFile = "config.dev"
-		viper.SetDefault("app.env","dev")
+	if env == "" {
+		env = "local"
+	} else {
+		env = strings.ToLower(env)
+	}
+	confFile, ok := Envs[env]
+	if !ok {
+		return errors.New("环境变量错误")
 	}
 	viper.AddConfigPath(confPath)
 	viper.SetConfigName(confFile)

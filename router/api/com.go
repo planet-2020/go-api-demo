@@ -5,6 +5,10 @@ import (
 	"go-api-demo/controller/com"
 )
 
+/**
+ * @Description: 社区路由
+ * @param apiGroup
+ */
 func ComRouter(apiGroup *gin.RouterGroup) {
 	group := apiGroup.Group("/com")
 	// 聊天

@@ -21,9 +21,10 @@ type Config struct {
 
 type AppConfig struct {
 	Name string `json:"name"`
-	Port string `json:"port"`
-	Env string `json:"env"`
-	Debug bool `json:"debug"`
+	Port string `json:"port"`	//web服务端口
+	StatPort string `json:"stat_port"`	//运行统计服务端口
+	Env string `json:"env"`	//环境模式
+	Debug bool `json:"debug"`	//调试模式
 }
 
 type MysqlConfig struct {
@@ -48,13 +49,14 @@ type RedisConfig struct {
 
 func setDefault()  {
 	// app
-	viper.SetDefault("app.name","go-api-demo")
-	viper.SetDefault("app.port","5050")
+	viper.SetDefault("App.Name","go-api-demo")
+	viper.SetDefault("App.Port","5050")
+	viper.SetDefault("App.StatPort","5051")
 	// mysql
-	viper.SetDefault("mysql.charset","utf8mb4")
-	viper.SetDefault("mysql.max_idle_conn",5)
-	viper.SetDefault("mysql.max_open_conn",10)
-	viper.SetDefault("mysql.conn_max_life_time",600)
+	viper.SetDefault("Mysql.Charset","utf8mb4")
+	viper.SetDefault("Mysql.MaxIdleConn",5)
+	viper.SetDefault("Mysql.MaxOpenConn",10)
+	viper.SetDefault("Mysql.ConnMaxLifeTime",600)
 }
 
 func Init(env string) error {

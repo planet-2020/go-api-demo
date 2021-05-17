@@ -3,6 +3,7 @@ module go-api-demo
 go 1.16
 
 require (
+	github.com/arl/statsviz v0.4.0 // indirect
 	github.com/armon/consul-api v0.0.0-20180202201655-eb2c6b5be1b6 // indirect
 	github.com/coreos/go-etcd v2.0.0+incompatible // indirect
 	github.com/fsnotify/fsnotify v1.4.9 // indirect

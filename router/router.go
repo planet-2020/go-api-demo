@@ -4,6 +4,7 @@ import (
 	"github.com/gin-gonic/gin"
 	"go-api-demo/controller"
 	"go-api-demo/internal/config"
+	"go-api-demo/internal/validate"
 	"go-api-demo/router/api"
 )
 
@@ -27,9 +28,14 @@ func Init(appConfig config.AppConfig) *Server {
 	gin.SetMode(mode)
 	server.GinEngine = gin.Default()
 	server.GinEngine.Use(gin.Recovery())
+
+	//参数校验初始化
+	validate.InitValidate()
+
+	//注册路由
 	server.baseApi()	//基础路由
 	apiGroup := server.GinEngine.Group("/api")
-	api.ComRouter(apiGroup)	//注册com模块路由
+	api.InitRouter(apiGroup)	//api路由
 
 	return server
 }

@@ -3,11 +3,11 @@
     "debug": true
   },
   "mysql": {
-    "hostname": "gateway.sumeils.com",
-    "database": "truly_platform",
-    "username": "root",
-    "password": "sumei15b",
-    "port": 31313,
+    "hostname": "49.234.27.131",
+    "database": "go_api_demo",
+    "username": "go_api_demo",
+    "password": "ehAipAtCCX3CkpCx",
+    "port": 3306,
     "max_idle_conn": 1,
     "max_open_conn": 3,
     "conn_max_life_time": 600

@@ -13,8 +13,12 @@ var (
 	// 鉴权
 	ErrToken = &Errno{Code: 30001, Message: "Token错误"}
 
-	// 业务
-	// 社区
+	//公共
+	ErrParam = &Errno{Code: 20001, Message: "请求参数错误"}
+
+	// 用户
+	ErrEncrypt = &Errno{Code: 20101, Message: "密码加密错误"}
+	ErrUserCreate = &Errno{Code: 20102, Message: "用户创建错误"}
 
 
 )

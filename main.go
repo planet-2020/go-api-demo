@@ -5,7 +5,7 @@ import (
 	"github.com/arl/statsviz"
 	"github.com/urfave/cli"
 	"go-api-demo/internal/config"
-	"go-api-demo/models"
+	"go-api-demo/model"
 	"go-api-demo/router"
 	"net/http"
 	"os"
@@ -31,7 +31,7 @@ func main()  {
 		}
 
 		//初始化数据库
-		if err := models.Database(config.Conf.Mysql); err != nil {
+		if err := model.Database(config.Conf.Mysql); err != nil {
 			fmt.Println(err)
 			return err
 		}

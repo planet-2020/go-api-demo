@@ -1,4 +1,10 @@
-package models
+/**
+ * @Description: 连接数据库
+ * @author zhouhongpan
+ * @date 2021/5/19 11:36
+ */
+
+package model
 
 import (
 	"fmt"

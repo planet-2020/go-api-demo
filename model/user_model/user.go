@@ -51,3 +51,16 @@ func (user *User) SetPassword(password string) error {
 	user.Password = string(bytes)
 	return nil
 }
+
+/**
+ * @Description: 校验密码
+ * @receiver user
+ * @param password
+ * @return bool
+ * @author zhouhongpan
+ * @date 2021-05-21 15:26:11
+ */
+func (user *User) CheckPassword(password string) bool {
+	err := bcrypt.CompareHashAndPassword([]byte(user.Password), []byte(password))
+	return err == nil
+}

@@ -12,6 +12,7 @@ var (
 
 	// 鉴权
 	ErrToken = &Errno{Code: 30001, Message: "Token错误"}
+	ErrTokenNeed = &Errno{Code: 30002, Message: "Token不能为空"}
 
 	//公共
 	ErrParam = &Errno{Code: 20001, Message: "请求参数错误"}
@@ -19,6 +20,12 @@ var (
 	// 用户
 	ErrEncrypt = &Errno{Code: 20101, Message: "密码加密错误"}
 	ErrUserCreate = &Errno{Code: 20102, Message: "用户创建错误"}
+	ErrUserRegisterMobileExist = &Errno{Code: 20103, Message: "手机号已存在"}
+	ErrUserNotExist = &Errno{Code: 20104, Message: "用户不存在"}
+	ErrUserPasswordError = &Errno{Code: 20105, Message: "密码不正确"}
+	ErrUserUpdateParams = &Errno{Code: 20106, Message: "用户更新参数错误"}
+	ErrUserUpdate = &Errno{Code: 20107, Message: "用户更新失败"}
+	ErrUserDelete = &Errno{Code: 20108, Message: "用户注销失败"}
 
 
 )

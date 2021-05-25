@@ -32,6 +32,9 @@ type AppConfig struct {
 	StatPort string `json:"stat_port"`	//运行统计服务端口
 	Env string `json:"env"`	//环境模式
 	Debug bool `json:"debug"`	//调试模式
+	JwtSubject string `json:"jwt_subject"`	//jwt主题
+	JwtSecret string `json:"jwt_secret"`	//jwt密钥
+	JwtExpireTime int64 `json:"jwt_expire_time"`	//jwt过期时间，秒
 }
 
 type MysqlConfig struct {
@@ -59,6 +62,9 @@ func setDefault()  {
 	viper.SetDefault("App.Name","go-api-demo")
 	viper.SetDefault("App.Port","5050")
 	viper.SetDefault("App.StatPort","5051")
+	viper.SetDefault("App.JwtSubject","go-api-demo")
+	viper.SetDefault("App.JwtSecret","go123456")
+	viper.SetDefault("App.JwtExpireTime","86400")
 	// mysql
 	viper.SetDefault("Mysql.Charset","utf8mb4")
 	viper.SetDefault("Mysql.MaxIdleConn",5)

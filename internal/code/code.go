@@ -27,6 +27,10 @@ var (
 	ErrUserUpdate = &Errno{Code: 20107, Message: "用户更新失败"}
 	ErrUserDelete = &Errno{Code: 20108, Message: "用户注销失败"}
 
+	// 消息队列
+	ErrMqSendNotTopic = &Errno{Code: 20201, Message: "topic 不能为空"}
+	ErrMqSendNotMessage = &Errno{Code: 20202, Message: "message 不能为空"}
+	ErrMqSendFail = &Errno{Code: 20203, Message: "消息队列发送失败"}
 
 )
 

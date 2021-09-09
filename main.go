@@ -6,6 +6,7 @@ import (
 	"github.com/urfave/cli"
 	"go-api-demo/internal/config"
 	"go-api-demo/model"
+	"go-api-demo/pkg/mq"
 	"go-api-demo/router"
 	"net/http"
 	"os"
@@ -35,6 +36,9 @@ func main()  {
 			fmt.Println(err)
 			return err
 		}
+
+		//开启消息队列
+		go mq.Consume()
 
 		//初始化路由并启动web服务
 		server := router.Init(config.Conf.App)

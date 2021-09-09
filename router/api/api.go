@@ -7,6 +7,7 @@ package api
 
 import (
 	"github.com/gin-gonic/gin"
+	"go-api-demo/controller/mq_controller"
 	"go-api-demo/controller/user_controller"
 	"go-api-demo/router/middleware"
 )
@@ -16,6 +17,9 @@ func InitRouter(apiGroup *gin.RouterGroup) {
 	//用户
 	apiGroup.POST("/user/register",user_controller.Register)
 	apiGroup.POST("/user/login",user_controller.Login)
+
+	//消息队列
+	apiGroup.POST("/mq/send",mq_controller.Send)
 
 	//授权分组
 	apiAuthGroup(apiGroup)
